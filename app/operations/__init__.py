@@ -16,7 +16,7 @@ class Operations:
     @staticmethod
     def subtraction(a: float, b: float) -> float:
         """Return a - b (difference between two numbers)."""
-        return a - b
+        return a-b
 
     @staticmethod
     def multiplication(a: float, b: float) -> float:
