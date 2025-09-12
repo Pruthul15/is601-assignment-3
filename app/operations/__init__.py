@@ -16,7 +16,7 @@ class Operations:
     @staticmethod
     def subtraction(a: float, b: float) -> float:
         """Return a - b (difference between two numbers)."""
-        return a-b
+        return a - b
 
     @staticmethod
     def multiplication(a: float, b: float) -> float:
@@ -28,7 +28,7 @@ class Operations:
         """
         Return a / b (quotient of two numbers).
 
-        👉 Refactor note: Added a defensive check before dividing.
+         Refactor note: Added a defensive check before dividing.
            If b == 0, raise a ValueError with a clear message.
            This matches the tests and avoids runtime crash.
         """
