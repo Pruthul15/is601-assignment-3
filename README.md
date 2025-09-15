@@ -62,7 +62,7 @@ pip install -r requirements.txt
 python main.py
 
 
-xample session:
+example session:
 
 Welcome to the calculator REPL! Type 'exit' to quit.
 
