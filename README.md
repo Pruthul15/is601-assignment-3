@@ -1,264 +1,82 @@
-# 📦 Project Setup
+#  Module 3 – Command-Line Calculator
 
----
+## 🎯 Objective
+For this assignment, we extended the calculator project to build a robust **command-line calculator** in Python using best practices:
 
-# 🧩 1. Install Homebrew (Mac Only)
+- **REPL (Read–Eval–Print Loop)** interface for continuous interaction  
+- Arithmetic operations: **add, subtract, multiply, divide**  
+- Input validation and error handling (e.g., divide by zero)  
+- Clean project structure following the **DRY principle**  
+- **100% unit test coverage** enforced with `pytest`  
+- Continuous Integration (CI) with **GitHub Actions** to run tests automatically  
 
-> Skip this step if you're on Windows.
 
-Homebrew is a package manager for macOS.  
-You’ll use it to easily install Git, Python, Docker, etc.
+## 📂 Project Structure
 
-**Install Homebrew:**
 
+assignment3/
+├─ .github/
+│ └─ workflows/
+│ └─ tests.yml # GitHub Actions workflow
+├─ app/
+│ ├─ init.py
+│ ├─ main.py # REPL entry point
+│ ├─ calculator/
+│ │ └─ init.py
+│ └─ operations/
+│ ├─ init.py
+│ └─ division/
+│ └─ init.py
+├─ tests/
+│ ├─ test_calculator.py # unit tests
+│ └─ test_operations.py # parameterized tests
+├─ pytest.ini # enforces 100% coverage
+├─ requirements.txt
+├─ LICENSE
+└─ README.md
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+git clone git@github.com:Pruthul15/is601-assignment-3.git
+cd assignment3
 
-**Verify Homebrew:**
 
-```bash
-brew --version
-```
 
-If you see a version number, you're good to go.
+2. Create and Activate Virtual Environment
 
----
-
-# 🧩 2. Install and Configure Git
-
-## Install Git
-
-- **MacOS (using Homebrew)**
-
-```bash
-brew install git
-```
-
-- **Windows**
-
-Download and install [Git for Windows](https://git-scm.com/download/win).  
-Accept the default options during installation.
-
-**Verify Git:**
-
-```bash
-git --version
-```
-
----
-
-## Configure Git Globals
-
-Set your name and email so Git tracks your commits properly:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your_email@example.com"
-```
-
-Confirm the settings:
-
-```bash
-git config --list
-```
-
----
-
-## Generate SSH Keys and Connect to GitHub
-
-> Only do this once per machine.
-
-1. Generate a new SSH key:
-
-```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-
-(Press Enter at all prompts.)
-
-2. Start the SSH agent:
-
-```bash
-eval "$(ssh-agent -s)"
-```
-
-3. Add the SSH private key to the agent:
-
-```bash
-ssh-add ~/.ssh/id_ed25519
-```
-
-4. Copy your SSH public key:
-
-- **Mac/Linux:**
-
-```bash
-cat ~/.ssh/id_ed25519.pub | pbcopy
-```
-
-- **Windows (Git Bash):**
-
-```bash
-cat ~/.ssh/id_ed25519.pub | clip
-```
-
-5. Add the key to your GitHub account:
-   - Go to [GitHub SSH Settings](https://github.com/settings/keys)
-   - Click **New SSH Key**, paste the key, save.
-
-6. Test the connection:
-
-```bash
-ssh -T git@github.com
-```
-
-You should see a success message.
-
----
-
-# 🧩 3. Clone the Repository
-
-Now you can safely clone the course project:
-
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
-
----
-
-# 🛠️ 4. Install Python 3.10+
-
-## Install Python
-
-- **MacOS (Homebrew)**
-
-```bash
-brew install python
-```
-
-- **Windows**
-
-Download and install [Python for Windows](https://www.python.org/downloads/).  
-✅ Make sure you **check the box** `Add Python to PATH` during setup.
-
-**Verify Python:**
-
-```bash
-python3 --version
-```
-or
-```bash
-python --version
-```
-
----
-
-## Create and Activate a Virtual Environment
-
-(Optional but recommended)
-
-```bash
+Linux/macOS (WSL included):
 python3 -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate.bat  # Windows
-```
+source venv/bin/activate
 
-### Install Required Packages
+Windows (PowerShell):
+python -m venv venv
+venv\Scripts\Activate
 
-```bash
+
+3. Install Dependencies
 pip install -r requirements.txt
-```
 
----
-
-# 🐳 5. (Optional) Docker Setup
-
-> Skip if Docker isn't used in this module.
-
-## Install Docker
-
-- [Install Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
-- [Install Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
-
-## Build Docker Image
-
-```bash
-docker build -t <image-name> .
-```
-
-## Run Docker Container
-
-```bash
-docker run -it --rm <image-name>
-```
-
----
-
-# 🚀 6. Running the Project
-
-- **Without Docker**:
-
-```bash
+▶️ Run the Calculator (REPL)
 python main.py
-```
 
-(or update this if the main script is different.)
 
-- **With Docker**:
+xample session:
 
-```bash
-docker run -it --rm <image-name>
-```
+Welcome to the calculator REPL! Type 'exit' to quit.
 
----
+Enter an operation (add, subtract, multiply, divide) and two numbers:
+> add 3 5
+Result: 8.0
 
-# 📝 7. Submission Instructions
+> divide 10 0
+Division by zero is not allowed.
 
-After finishing your work:
+> exit 
 
-```bash
-git add .
-git commit -m "Complete Module X"
-git push origin main
-```
+Running Tests & Coverage
 
-Then submit the GitHub repository link as instructed.
+Run all tests:
 
----
-
-# 🔥 Useful Commands Cheat Sheet
-
-| Action                         | Command                                          |
-| ------------------------------- | ------------------------------------------------ |
-| Install Homebrew (Mac)          | `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` |
-| Install Git                     | `brew install git` or Git for Windows installer |
-| Configure Git Global Username  | `git config --global user.name "Your Name"`      |
-| Configure Git Global Email     | `git config --global user.email "you@example.com"` |
-| Clone Repository                | `git clone <repo-url>`                          |
-| Create Virtual Environment     | `python3 -m venv venv`                           |
-| Activate Virtual Environment   | `source venv/bin/activate` / `venv\Scripts\activate.bat` |
-| Install Python Packages        | `pip install -r requirements.txt`               |
-| Build Docker Image              | `docker build -t <image-name> .`                |
-| Run Docker Container            | `docker run -it --rm <image-name>`               |
-| Push Code to GitHub             | `git add . && git commit -m "message" && git push` |
-
----
-
-# 📋 Notes
-
-- Install **Homebrew** first on Mac.
-- Install and configure **Git** and **SSH** before cloning.
-- Use **Python 3.10+** and **virtual environments** for Python projects.
-- **Docker** is optional depending on the project.
-
----
-
-# 📎 Quick Links
-
-- [Homebrew](https://brew.sh/)
-- [Git Downloads](https://git-scm.com/downloads)
-- [Python Downloads](https://www.python.org/downloads/)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- [GitHub SSH Setup Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+pytest
